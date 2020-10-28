@@ -10,8 +10,8 @@ def format_response(data, meta={}, success=True, message=None, status_code=200, 
         status_code = code
 
     return jsonify({
-        data=data,
-        meta=meta,
-        success=success,
-        message=message
+        'data': data,
+        'meta': meta,
+        'success': success,
+        'message': message
     }), status_code

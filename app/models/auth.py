@@ -8,7 +8,7 @@ User = sa.Table(
     sa.Column('username', sa.String(255), nullable=False, unique=True),
     sa.Column('password', sa.String(255), nullable=True),
     sa.Column('name', sa.String(255), nullable=True),
-    sa.Column('email', s.String(255), nullable=False, unique=True),
+    sa.Column('email', sa.String(255), nullable=False, unique=True),
     sa.Column('referral_code', sa.String(255), nullable=True)
 )
 
