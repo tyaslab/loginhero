@@ -1,5 +1,5 @@
 from flask import request
 
 
-def get_hero_list():
+def get_user_profile():
     pass
