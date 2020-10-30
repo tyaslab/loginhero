@@ -3,7 +3,7 @@ from flask import g
 from flask_babel import lazy_gettext as _
 from marshmallow import Schema, validates, validates_schema, ValidationError, EXCLUDE
 from marshmallow.fields import String
-from marshmallow.validate import Length, Regexp
+from marshmallow.validate import Length, Regexp, Email
 from app.utils.connect_db import connect_db
 from app.models.auth import User
 
@@ -48,7 +48,8 @@ class RegistrationForm(Schema):
     )
     email = String(required=True, allow_none=False,
         validate=[
-            Length(min=1, error=_('Email is required'))
+            Length(min=1, error=_('Email is required')),
+            Email(error=_('Invalid email format'))
         ],
         error_messages={
             'required': _('Email is required'),

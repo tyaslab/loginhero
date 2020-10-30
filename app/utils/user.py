@@ -33,7 +33,7 @@ def generate_auth_token(payload):
 def get_payload(token=None):
     if token is None:
         authorization = request.headers.get('Authorization')
-        if not authorization.startswith('Bearer '):
+        if not authorization or not authorization.startswith('Bearer '):
             raise jwt.exceptions.DecodeError
 
         token = authorization.split(' ')[-1]
