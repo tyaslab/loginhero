@@ -7,11 +7,12 @@ def format_response(data, meta={}, success=True, message=None, status_code=200, 
         message = _('Success')
     
     if code is None:
-        status_code = code
+        code = status_code
 
     return jsonify({
         'data': data,
         'meta': meta,
         'success': success,
-        'message': message
+        'message': message,
+        'code': code
     }), status_code

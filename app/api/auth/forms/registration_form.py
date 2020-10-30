@@ -1,8 +1,9 @@
 import sqlalchemy as sa
+from flask import g
 from flask_babel import lazy_gettext as _
 from marshmallow import Schema, validates, validates_schema, ValidationError
 from marshmallow.fields import String
-from marshmallow.validate import Length
+from marshmallow.validate import Length, Regexp
 from app.utils.connect_db import connect_db
 from app.models.auth import User
 
@@ -10,7 +11,8 @@ from app.models.auth import User
 class RegistrationForm(Schema):
     username = String(required=True, allow_none=False,
         validate=[
-            Length(min=1, error=_('Username is required'))
+            Length(min=1, error=_('Username is required')),
+            Regexp(r'^[a-zA-Z_\-0-9]+$', error=_('Username cannot contain space and can only contain a-z,_,0-9'))
         ],
         error_messages={
             'required': _('Username is required'),
@@ -57,13 +59,13 @@ class RegistrationForm(Schema):
 
     @validates('username')
     def validate_username(self, username):
-        db = connect_db()
-        check = db.execute(
+        connect_db()
+        check = g.db.execute(
             sa.select([User.c.id]).where(User.c.username == username)
         ).scalar()
 
         if check:
-            raise ValidationError(_('Username %(username)s already exists. Please input another username.'))
+            raise ValidationError(_('Username %(username)s already exists. Please input another username.', username=username))
 
     @validates_schema(skip_on_field_errors=True)
     def validate_confirm_password(self, data, **kwargs):
@@ -75,18 +77,18 @@ class RegistrationForm(Schema):
     
     @validates('email')
     def validate_email(self, email):
-        db = connect_db()
-        check = db.execute(
+        connect_db()
+        check = g.db.execute(
             sa.select([User.c.id]).where(User.c.email == email)
         ).scalar()
 
         if check:
-            raise ValidationError(_('Email %(email)s already exists. Please input another email.'))
+            raise ValidationError(_('Email %(email)s already exists. Please input another email.', email=email))
 
     @validates('referral_code')
     def validate_referral_code(self, referral_code):
-        db = connect_db()
-        check = db.execute(
+        connect_db()
+        check = g.db.execute(
             sa.select([User.c.id]).where(User.c.referral_code == referral_code)
         ).scalar()
 

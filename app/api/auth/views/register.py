@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, g
 from flask_babel import lazy_gettext as _
 from app.utils.response import format_response
 from app.api.auth.forms.registration_form import RegistrationForm
@@ -13,10 +13,10 @@ def register():
     form = RegistrationForm()
     data = form.load(auto_trim(request.json or {}))
 
-    db = connect_db()
+    connect_db()
     referral_code = generate_referrral_code()
     password = generate_password_hash(data['password'])
-    db.execute(
+    user_id = g.db.execute(
         User.insert().values(
             username=data['username'],
             password=password,
@@ -24,7 +24,14 @@ def register():
             email=data['email'],
             referral_code=referral_code
         )
-    )
-    
+    ).lastrowid
 
-    return format_response(data=None)
+    data = {
+        'id': user_id,
+        'username': data['username'],
+        'name': data['name'],
+        'email': data['email'],
+        'referral_code': referral_code
+    }
+
+    return format_response(data=data)
