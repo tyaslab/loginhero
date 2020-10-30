@@ -43,7 +43,7 @@ class RedisAdapter:
         key = f'{self.prefix}:{key}'
 
         if timeout is None:
-            timeout = self.app.config.REDIS_TIMEOUT
+            timeout = self.app.config['REDIS_TIMEOUT']
         value = pickle.dumps(value)
         try:
             self._redis_connection.setex(key, timeout, value)
@@ -75,12 +75,12 @@ def connect_redis():
     # initialize redis
     redis = RedisAdapter(
         dict(
-            host=app.config.REDIS_HOST,
+            host=app.config['REDIS_HOST'],
             port=app.config.get('REDIS_PORT', 6379),
             db=app.config.get('REDIS_DB', 0),
             password=app.config.get('REDIS_PASSWORD', None)
         ),
-        prefix=app.config.REDIS_PREFIX,
+        prefix=app.config['REDIS_PREFIX'],
         app=app
     )
 
