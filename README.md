@@ -12,7 +12,7 @@
 2. Activate virtualenv ```$ source env/bin/activate```
 3. Install required modules ```$ pip install -r requirements.txt```
 4. Create a database
-5. Create file ```app/local_config.py``` (You can copy from ```local_config.py-example```), edit to fit your need!
+5. Create file ```app/local_config.py``` (You can copy from ```local_config.py-example```), **edit to fit your need!**
 4. It includes script to create table (for the first time)  ```python main.py create-table```
 5. Run it! ```python main.py``` or just ```./main.py``` (for *nix users)
 
