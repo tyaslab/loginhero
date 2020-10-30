@@ -14,7 +14,7 @@ def generate_referrral_code(length=None, characters=None):
 
     result = ''
     for _ in range(0, length):
-        result += characters[randint(0, len(characters))]
+        result += characters[randint(0, len(characters) - 1)]
 
     return result
 

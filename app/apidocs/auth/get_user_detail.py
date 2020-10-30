@@ -11,7 +11,10 @@ def get_apidoc():
         'parameters': [
             {
                 'in': 'path',
-                'name': 'username'
+                'name': 'username',
+                'schema': {
+                    'type': 'string'
+                }
             }
         ],
         'responses': {

@@ -12,6 +12,9 @@ def get_apidoc():
             {
                 'in': 'query',
                 'name': 'q',
+                'schema': {
+                    'type': 'string'
+                },
                 'description': 'Search user by username and name'
             }
         ],

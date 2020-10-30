@@ -3,11 +3,7 @@ def get_apidoc():
         'summary': 'Register',
         'description': 'Register',
         'tags': ['Auth'],
-        'security': [
-            {
-                'bearerAuth': []
-            }
-        ],
+        'security': [],
         'requestBody': {
             'description': 'JSON Object containing registration information',
             'content': {

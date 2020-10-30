@@ -25,8 +25,8 @@ def register():
             name=data['name'],
             email=data['email'],
             referral_code=referral_code
-        )
-    ).lastrowid
+        ).returning(User.c.id)
+    ).scalar()
 
     # save referral code
     # get user_id by referral code

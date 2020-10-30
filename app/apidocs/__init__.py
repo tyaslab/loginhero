@@ -39,7 +39,7 @@ def generate_apidocs():
             '/auth/user/list': {
                 'get': import_apidoc('auth.get_user_list')
             },
-            '/auth/user/detail/:username': {
+            '/auth/user/detail/{username}': {
                 'get': import_apidoc('auth.get_user_detail')
             },
             '/auth/user/profile': {

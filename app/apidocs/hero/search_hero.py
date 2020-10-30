@@ -11,7 +11,11 @@ def get_apidoc():
         'parameters': [
             {
                 'in': 'query',
-                'name': 'q'
+                'name': 'q',
+                'required': True,
+                'schema': {
+                    'type': 'string'
+                }
             }
         ],
         'responses': {

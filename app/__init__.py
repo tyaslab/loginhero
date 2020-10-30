@@ -6,6 +6,7 @@ from app import config
 from marshmallow import ValidationError
 from flask import jsonify
 from app.utils.response import format_response
+from werkzeug.exceptions import HTTPException
 
 
 app = Flask(__name__)
@@ -39,6 +40,17 @@ def handle_validation_error(exception):
             data.update({k: messages[k]})
     
     return format_response(data=data, success=False, status_code=400, message=_('Please check your data'))
+
+
+@app.errorhandler(HTTPException)
+def handle_http_exception(exception):
+    return format_response(
+        data=None,
+        meta={},
+        success=False,
+        message=exception.description,
+        status_code=exception.code
+    )
 
 
 from app.api import blueprint as api_blueprint
