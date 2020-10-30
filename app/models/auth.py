@@ -16,7 +16,7 @@ sa.Index('user_referral_code_index', User.c.referral_code)
 
 
 # TODO: Create index if required
-RedeemedReferralCode = sa.Table(
+UserHasReferralCodes = sa.Table(
     'user_has_referral_codes', meta_db,
     sa.Column('id', sa.Integer, primary_key=True),
     sa.Column('redeemed_referral_code', sa.String(255), nullable=False),
