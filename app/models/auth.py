@@ -9,7 +9,9 @@ User = sa.Table(
     sa.Column('password', sa.String(255), nullable=True),
     sa.Column('name', sa.String(255), nullable=True),
     sa.Column('email', sa.String(255), nullable=False, unique=True),
-    sa.Column('referral_code', sa.String(255), nullable=True)
+    sa.Column('referral_code', sa.String(255), nullable=True),
+    sa.Column('created', sa.DateTime, server_default=sa.func.NOW(), nullable=True),
+    sa.Column('modified', sa.DateTime, server_default=sa.func.NOW(), nullable=True)
 )
 
 sa.Index('user_referral_code_index', User.c.referral_code)
@@ -21,5 +23,7 @@ UserHasReferralCodes = sa.Table(
     sa.Column('id', sa.Integer, primary_key=True),
     sa.Column('redeemed_referral_code', sa.String(255), nullable=False),
     sa.Column('redeemed_user_id', sa.Integer, nullable=False),  # user that has referral_code
-    sa.Column('redeemer_user_id', sa.Integer, nullable=False)  # user that registered with the referral_code
+    sa.Column('redeemer_user_id', sa.Integer, nullable=False),  # user that registered with the referral_code
+    sa.Column('created', sa.DateTime, server_default=sa.func.NOW(), nullable=True),
+    sa.Column('modified', sa.DateTime, server_default=sa.func.NOW(), nullable=True)
 )

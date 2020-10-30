@@ -1,7 +1,7 @@
 import sqlalchemy as sa
 from flask import g
 from flask_babel import lazy_gettext as _
-from marshmallow import Schema, validates, validates_schema, ValidationError
+from marshmallow import Schema, validates, validates_schema, ValidationError, EXCLUDE
 from marshmallow.fields import String
 from marshmallow.validate import Length, Regexp
 from app.utils.connect_db import connect_db
@@ -56,6 +56,9 @@ class RegistrationForm(Schema):
         }
     )
     referral_code = String(required=False, allow_none=True)
+
+    class Meta:
+        unknown = EXCLUDE
 
     @validates('username')
     def validate_username(self, username):

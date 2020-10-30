@@ -36,6 +36,7 @@ def handle_validation_error(exception):
             data.update({k: messages[k][0]})
         else:
             data.update({k: messages[k]})
+    
     return format_response(data=data, success=False, status_code=400, message=_('Please check your data'))
 
 
