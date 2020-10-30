@@ -9,7 +9,9 @@ from app.api.auth.views.update_user_profile import update_user_profile
 
 from app.api.hero.views.search_hero import search_hero
 
+
 blueprint = Blueprint('api', __name__)
+
 blueprint.add_url_rule('/auth/register', endpoint='auth_register', view_func=register, methods=['POST'])
 blueprint.add_url_rule('/auth/login', endpoint='auth_login', view_func=login, methods=['POST'])
 blueprint.add_url_rule('/auth/input-referral-code', endpoint='auth_input_referral_code', view_func=input_referral_code, methods=['POST'])

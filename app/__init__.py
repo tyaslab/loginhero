@@ -4,6 +4,7 @@ from flask_babel import Babel
 from flask_babel import lazy_gettext as _
 from app import config
 from marshmallow import ValidationError
+from flask import jsonify
 from app.utils.response import format_response
 
 
@@ -42,3 +43,19 @@ def handle_validation_error(exception):
 
 from app.api import blueprint as api_blueprint
 app.register_blueprint(api_blueprint, url_prefix='/api/v1')
+
+
+if app.config.get('ENABLE_APIDOCS', True):
+    from app.apidocs import generate_apidocs
+    from flask import render_template
+
+    def get_apidocs_config():
+        # TODO: apidocs configs goes here
+        return jsonify({})
+
+    def show_apidocs():
+        return render_template('apidocs.html', STATIC_URL='/static/')
+
+    app.add_url_rule('/api/v1/apidocs-config', endpoint='get_apidocs_config', view_func=get_apidocs_config)
+    app.add_url_rule('/api/v1/apidocs.json', endpoint='generate_apidocs', view_func=generate_apidocs)
+    app.add_url_rule('/api/v1/apidocs', endpoint='apidocs', view_func=show_apidocs)

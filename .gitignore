@@ -3,3 +3,4 @@ env
 *.pyc
 __pycache__
 app/local_config.py
+.DS_Store
