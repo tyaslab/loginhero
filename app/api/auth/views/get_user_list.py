@@ -18,7 +18,14 @@ def get_user_list():
         return format_response(data=None, success=False, message=_('You are not authorized'), status_code=401)
     
     redis = connect_redis()
-    q = request.args.get('q', '')
+    q = ''
+    if request.method == 'POST':
+        try:
+            params = request.json or {}
+            q = params.get('q', '')
+        except:
+            # TODO: except more correctly
+            q = ''
     redis_key = f'user-list:q-{q}'
     if redis.exists(redis_key):
         result = redis.get(redis_key)

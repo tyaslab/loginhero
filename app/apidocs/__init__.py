@@ -37,7 +37,8 @@ def generate_apidocs():
                 'post': import_apidoc('auth.input_referral_code')
             },
             '/auth/user/list': {
-                'get': import_apidoc('auth.get_user_list')
+                'get': import_apidoc('auth.get_user_list'),
+                'post': import_apidoc('auth.search_user_list')
             },
             '/auth/user/detail/{username}': {
                 'get': import_apidoc('auth.get_user_detail')

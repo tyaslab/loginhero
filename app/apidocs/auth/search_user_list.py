@@ -8,7 +8,16 @@ def get_apidoc():
                 'bearerAuth': []
             }
         ],
-        'parameters': [],
+        'parameters': [
+            {
+                'in': 'query',
+                'name': 'q',
+                'schema': {
+                    'type': 'string'
+                },
+                'description': 'Search user by username and name'
+            }
+        ],
         'responses': {
             '401': {
                 'description': 'Unauthenticated user',
