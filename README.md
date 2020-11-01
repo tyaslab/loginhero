@@ -5,6 +5,10 @@
 - PostgreSQL (or any database backend you like)
 - Redis (if not exist it won't be a show stopper. trust me!)
 
+### How to run (with Docker)
+- Create file ```.env``` (copy from ```.env-example```)
+- You can run this app with docker by ```$ docker-compose up --build``` and everything should be OK
+
 
 ## How to Install
 

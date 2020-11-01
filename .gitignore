@@ -4,3 +4,5 @@ env
 __pycache__
 app/local_config.py
 .DS_Store
+pgdata
+.env

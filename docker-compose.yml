@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    env_file:
+      - .env
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+  app:
+    image: base
+    depends_on:
+      - postgres
+    build:
+      context: .
+    command: sh -c "/env/bin/pip install -r requirements.txt && /env/bin/python3.8 main.py create-table && /env/bin/python3.8 main.py"
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - 5000:5000
+    env_file:
+      - .env
