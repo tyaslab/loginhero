@@ -6,7 +6,7 @@ DB = 'YOU_MUST_DEFINE_IT!!!'
 
 SECRET_KEY = 'y0umu5td3f1n3y0ur53lf'
 
-REDIS_HOST = 'localhost'
+REDIS_HOST = 'redis'  # if you want to run via docker
 REDIS_PORT = 6379
 REDIS_DB = 0
 REDIS_PASSWORD = None
