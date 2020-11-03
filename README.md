@@ -6,8 +6,9 @@
 - Redis (if not exist it won't be a show stopper. trust me!)
 
 ### How to run (with Docker)
-- Create file ```.env``` (copy from ```.env-example```)
-- You can run this app with docker by ```$ docker-compose up --build``` and everything should be OK
+1. Create file ```.env``` (copy from ```.env-example```)
+2. Create file ```app/local_config.py``` (You can copy from ```local_config.py-example```), **edit to fit your need!**
+3. You can run this app with docker by ```$ docker-compose up --build``` and everything should be OK
 
 
 ## How to Install

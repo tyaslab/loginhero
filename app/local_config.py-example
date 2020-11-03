@@ -2,7 +2,8 @@ DEBUG = True
 ENV = 'development'
 ENABLE_APIDOCS = True
 
-DB = 'YOU_MUST_DEFINE_IT!!!'
+# NOTE: YOU MUST DEFINE IT YOURSELF!!!
+DB = 'postgresql+psycopg2://postgres:postgres@postgres:5432/postgres'
 
 SECRET_KEY = 'y0umu5td3f1n3y0ur53lf'
 
